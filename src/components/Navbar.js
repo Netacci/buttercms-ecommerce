@@ -20,13 +20,13 @@ const Navbar = () => {
   console.log(navList);
   return (
     <>
-      <div className='container px-36'>
+      <div className='container md:px-36'>
         <nav className='bg-white border-gray-200 px-2 sm:px-4 py-6 rounded dark:bg-gray-800'>
-          <div className=' flex justify-between items-center flex-wrap mx-auto '>
+          <div className=' flex justify-between items-center flex-wrap mx-auto md:flex-row flex-col '>
             <NavLink to='/' className='text-3xl font-bold text-pink-700'>
               NetFashion
             </NavLink>
-            <div className='flex w-5/12 justify-between items-center flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium'>
+            <div className='flex  md:justify-between items-center  mt-4 flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium'>
               {navList.map((nav) => (
                 <NavLink
                   key={nav.meta.id}
