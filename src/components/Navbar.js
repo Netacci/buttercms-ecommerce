@@ -1,23 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import butter from '../butter-client';
 import { NavLink } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Navbar = () => {
   const [navList, setNavList] = useState([]);
-  useEffect(() => {
-    var params = {
-      page: '1',
-      page_size: '10',
-    };
+  const [loading, setLoading] = useState(false);
 
-    butter.content
-      .retrieve(['navigation'], params)
-      .then((res) => {
-        setNavList(res.data.data.navigation);
-      })
-      .catch((err) => err.message);
+  useEffect(() => {
+    const getNav = async () => {
+      setLoading(true);
+      var params = {
+        page: '1',
+        page_size: '10',
+      };
+
+      const res = await butter.content.retrieve(['navigation'], params);
+
+      setNavList(res.data.data.navigation);
+      setLoading(false);
+    };
+    getNav();
   }, []);
-  console.log(navList);
+
+  const Loading = () => {
+    return (
+      <div className='flex  md:justify-between items-center  mt-4 flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium'>
+        <Skeleton width={50} />
+        <Skeleton width={50} />
+        <Skeleton width={50} />
+        <Skeleton width={50} />
+      </div>
+    );
+  };
+
   return (
     <>
       <div className='container md:px-36'>
@@ -26,17 +43,21 @@ const Navbar = () => {
             <NavLink to='/' className='text-3xl font-bold text-pink-700'>
               NetFashion
             </NavLink>
-            <div className='flex  md:justify-between items-center  mt-4 flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium'>
-              {navList.map((nav) => (
-                <NavLink
-                  key={nav.meta.id}
-                  to={nav.url}
-                  className=' py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-pink-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
-                >
-                  {nav.label}
-                </NavLink>
-              ))}
-            </div>
+            {loading ? (
+              <Loading />
+            ) : (
+              <div className='flex  md:justify-between items-center  mt-4 flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium'>
+                {navList.map((nav) => (
+                  <NavLink
+                    key={nav.meta.id}
+                    to={nav.url}
+                    className=' py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-pink-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
+                  >
+                    {nav.label}
+                  </NavLink>
+                ))}
+              </div>
+            )}
           </div>
         </nav>
       </div>
