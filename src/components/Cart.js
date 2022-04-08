@@ -28,7 +28,7 @@ const Cart = () => {
         <div className=' p-10 md:p-20'>
           {state.map((cartItem) => (
             <div
-              className='p-4 mb-5 md:py-10 relative  text-center bg-white rounded-lg border shadow-md sm:p-8'
+              className='p-4 max-w-[670px] mx-auto mb-5 md:py-10 relative  text-center bg-white rounded-lg border shadow-md sm:p-8'
               key={cartItem.meta.id}
             >
               <div className='grid grid-cols-1 md:grid-cols-2 mt-4 '>
