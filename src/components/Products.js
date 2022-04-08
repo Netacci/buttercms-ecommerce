@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import butter from '../butter-client';
 import Tabs from './Tabs';
 import Loading from './Loading';
+import { NavLink } from 'react-router-dom';
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -38,31 +39,30 @@ const Products = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className='flex flex-wrap flex-row justify-center mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-3 place-items-center mx-auto'>
           {filter.map((product) => (
-            <div
-              className='max-w-sm mr-9 mb-5 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700'
-              key={product.meta.id}
-            >
-              <img
-                className='p-8 rounded-t-lg w-full'
-                src={product.image}
-                alt={product.name}
-              />
-              <div className='px-5 pb-5 text-center'>
-                <h5 className='text-xl font-semibold tracking-tight text-gray-900 dark:text-white'>
-                  {product.title}
-                </h5>
+            <NavLink key={product.meta.id} to={`/products/${product.meta.id}`}>
+              <div className='max-w-sm mr-9 mb-5 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700'>
+                <img
+                  className='p-8 rounded-3xl w-full'
+                  src={product.image}
+                  alt={product.name}
+                />
+                <div className='px-5 pb-5 text-center'>
+                  <h5 className='text-xl font-semibold tracking-tight text-gray-900 dark:text-white'>
+                    {product.title}
+                  </h5>
+                </div>
+                <div className='flex justify-around pb-5 items-center'>
+                  <span className='text-3xl font-bold text-gray-900 dark:text-white'>
+                    ${product.price}
+                  </span>
+                  <button className='text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center '>
+                    View Product
+                  </button>
+                </div>
               </div>
-              <div className='flex justify-around pb-5 items-center'>
-                <span className='text-3xl font-bold text-gray-900 dark:text-white'>
-                  ${product.price}
-                </span>
-                <button className='text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center '>
-                  View Product
-                </button>
-              </div>
-            </div>
+            </NavLink>
           ))}
         </div>
       )}

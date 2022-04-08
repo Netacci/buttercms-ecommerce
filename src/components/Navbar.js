@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import butter from '../butter-client';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { Icon } from '@iconify/react';
 
 const Navbar = () => {
   const [navList, setNavList] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const state = useSelector((state) => state.handleCart);
+  console.log(state);
   useEffect(() => {
     const getNav = async () => {
       setLoading(true);
@@ -58,6 +61,12 @@ const Navbar = () => {
                 ))}
               </div>
             )}
+            <NavLink to='/cart' className='cursor-pointer relative'>
+              <Icon icon='el:shopping-cart' className='text-gray-700 ' />
+              <p className=' bg-rose-300 p-1 px-2 text-white rounded-full text-xs absolute -top-4 left-3'>
+                {state.length}
+              </p>
+            </NavLink>
           </div>
         </nav>
       </div>
