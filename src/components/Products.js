@@ -39,9 +39,13 @@ const Products = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div className='grid grid-cols-1 md:grid-cols-3 place-items-center mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-3 place-items-center mx-auto transition-all mt-5 duration-700 ease-out '>
           {filter.map((product) => (
-            <NavLink key={product.meta.id} to={`/products/${product.meta.id}`}>
+            <NavLink
+              key={product.meta.id}
+              to={`/products/${product.meta.id}`}
+              className='transition-all ease duration-300 '
+            >
               <div className='max-w-sm md:mr-9 mb-5 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700'>
                 <img
                   className='p-8 rounded-3xl w-full'
