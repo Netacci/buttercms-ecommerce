@@ -48,7 +48,7 @@ const Products = () => {
             >
               <div className='max-w-sm md:mr-9 mb-5 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700'>
                 <img
-                  className='p-8 rounded-3xl w-full'
+                  className='p-8 rounded-t-lg w-full'
                   src={product.image}
                   alt={product.name}
                 />

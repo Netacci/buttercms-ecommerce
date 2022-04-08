@@ -63,8 +63,8 @@ const Product = () => {
       ) : (
         <div>
           {notifyMessage != null && (
-            <div className='px-20 py-10 text-center w-6/12 mx-auto'>
-              <p class='  p-4 mb-4 font-medium text-sm text-green-700 bg-green-100 rounded-lg'>
+            <div className='md:px-20 px-7 py-5 md:py-10 text-center md:w-6/12 mx-auto'>
+              <p class='  p-4 md:mb-4 font-medium text-sm text-green-700 bg-green-100 rounded-lg'>
                 {notifyMessage}
               </p>
             </div>
@@ -73,34 +73,35 @@ const Product = () => {
           {singleProduct.map((prod) => (
             <div key={prod.meta.id} className='mx-auto'>
               <div className='flex flex-col md:flex-row justify-center text-center  md:justify-around px-20 py-10'>
-                <img
-                  src={prod.image}
-                  alt='product'
-                  className='p-8 rounded-t-lg md:w-4/12'
-                />
                 <div className='md:w-5/12'>
-                  <h1 className='uppercase text-4xl font-light'>
+                  <img
+                    src={prod.image}
+                    alt='product'
+                    className=' rounded-t-lg '
+                  />
+                  <h1 className=' mt-5 font-semibold text-2xl'>{prod.title}</h1>
+                </div>
+                <div className='md:w-5/12'>
+                  <h1 className='uppercase text-base md:text-4xl font-light'>
                     {prod.category && prod.category.category}
                   </h1>
                   <p className='mt-4'>{prod.description}</p>
                   <p className='font-bold text-xl mt-5 mb-5'>${prod.price}</p>
-
-                  <button
-                    onClick={() => addCart(prod)}
-                    className='mt-5 text-rose-800 border border-rose-700 hover:bg-rose-800 hover:text-white transition-all ease-in duration-300 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-4'
-                  >
-                    Add to cart
-                  </button>
-                  <NavLink
-                    to='/cart'
-                    className='mt-5 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:ring-rose-300 font-medium transition-all ease-in duration-300  rounded-lg text-sm px-5 py-2.5 text-center '
-                  >
-                    Go to cart
-                  </NavLink>
+                  <div className='flex flex-cols justify-center md:flex-row'>
+                    <button
+                      onClick={() => addCart(prod)}
+                      className='mt-5 text-rose-800 border border-rose-700 hover:bg-rose-800 hover:text-white transition-all ease-in duration-300 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-1 md:mr-4'
+                    >
+                      Add to cart
+                    </button>
+                    <NavLink
+                      to='/cart'
+                      className='mt-5 text-white bg-rose-700 hover:bg-rose-800 focus:ring-4 focus:ring-rose-300 font-medium transition-all ease-in duration-300  rounded-lg text-sm px-5 py-2.5 text-center '
+                    >
+                      Go to cart
+                    </NavLink>
+                  </div>
                 </div>
-              </div>
-              <div className='px-24 text-center md:text-left'>
-                <h1 className=' font-semibold text-2xl'>{prod.title}</h1>
               </div>
             </div>
           ))}
