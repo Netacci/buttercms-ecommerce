@@ -61,7 +61,10 @@ const Navbar = () => {
                 ))}
               </div>
             )}
-            <NavLink to='/cart' className='cursor-pointer relative'>
+            <NavLink
+              to='/cart'
+              className='cursor-pointer relative mt-7 md:mt-0'
+            >
               <Icon icon='el:shopping-cart' className='text-gray-700 ' />
               <p className=' bg-rose-300 p-1 px-2 text-white rounded-full text-xs absolute -top-4 left-3'>
                 {state.length}
