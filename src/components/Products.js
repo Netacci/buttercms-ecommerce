@@ -42,7 +42,7 @@ const Products = () => {
         <div className='grid grid-cols-1 md:grid-cols-3 place-items-center mx-auto'>
           {filter.map((product) => (
             <NavLink key={product.meta.id} to={`/products/${product.meta.id}`}>
-              <div className='max-w-sm mr-9 mb-5 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700'>
+              <div className='max-w-sm md:mr-9 mb-5 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700'>
                 <img
                   className='p-8 rounded-3xl w-full'
                   src={product.image}
